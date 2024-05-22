@@ -1,0 +1,152 @@
+/* Reset some default styling */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  background-color: #000; /* 背景色を黒に */
+  color: #fff; /* 文字色を白に */
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* 上寄りに配置 */
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1000px;
+  width: 100%;
+  margin-top: 20px; /* 上から少し余白を追加 */
+}
+
+.navbar {
+  background-color: #222;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.navbar-brand,
+.navbar-nav > li > a {
+  color: #fff !important;
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li.active > a {
+  background-color: #444;
+}
+
+.navbar-text a {
+  color: #fff;
+}
+
+.navbar-text a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb {
+  background-color: #222;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.table-responsive {
+  background-color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table th,
+.table td {
+  border-top: 1px solid #444;
+}
+
+.table th {
+  background-color: #444;
+  color: #fff;
+  text-align: center;
+}
+
+.table td {
+  text-align: center;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #555;
+}
+
+.table a {
+  color: #1e90ff;
+}
+
+.table a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .navbar-nav {
+    float: none !important;
+    margin: 7.5px -15px;
+  }
+  .navbar-nav > li {
+    float: none;
+  }
+  .navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .navbar-text {
+    float: none;
+    margin: 15px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-text {
+    margin-right: 15px;
+  }
+}

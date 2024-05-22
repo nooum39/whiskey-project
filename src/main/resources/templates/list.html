@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WhiskeyList</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/list.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span> <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a
+              class="navbar-brand"
+              href="list.html"
+              th:href="@{/item/showList}"
+            >
+              <!-- 企業ロゴ -->
+              <!-- todo 画像変更 --------------------------------------------------------------------------------------->
+              <!--              <img-->
+              <!--                src="../../static/img/header_logo_small.png"-->
+              <!--                th:src="@{/img/header_logo_small.png}"-->
+              <!--              />-->
+            </a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div
+            class="collapse navbar-collapse"
+            id="bs-example-navbar-collapse-1"
+          >
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="list.html">ウイスキーリスト</a></li>
+            </ul>
+            <p class="navbar-text navbar-right">
+              <!--              <span th:text="${session.administratorName + 'さん'}"-->
+              <!--                >山田さん</span-->
+              <!--              >こんにちは！ &nbsp;&nbsp;&nbsp;-->
+              <a
+                href="../administrator/login.html"
+                class="navbar-link"
+                th:href="@{/logout}"
+                >ログアウト</a
+              >
+            </p>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </nav>
+
+      <!-- パンくずリスト -->
+      <ol class="breadcrumb">
+        <li class="active">
+          <a href="list.html" th:href="@{/item/showList}">ウイスキーリスト</a>
+        </li>
+      </ol>
+
+      <!-- table -->
+      <div class="row">
+        <div
+          class="table-responsive col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12"
+        >
+          <!-- ここから上を編集する必要はありません -->
+
+          <!-- ここにモックのtable要素を貼り付けます -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>ProductionArea</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="item :${itemsList}">
+                <td>
+                  <span th:if="${item.id == 1}">
+                    <a href="https://www.ardbegjapan.com/products/">
+                      <span th:text="${item.name}">demmy</span>
+                    </a>
+                  </span>
+                  <span th:if="${item.id != 1}">
+                    <a th:href="@{/item/showDetail?id=} + ${item.id}">
+                      <span th:text="${item.name}">demmy</span>
+                    </a>
+                  </span>
+
+                  <!-- <a th:href="@{/item/showDetail?id=} + ${item.id}">
+                                               @{/employee/showDetail?id={${employee.id}}}
+                    <span th:text="${item.name}">demmy</span>
+                  </a> -->
+                </td>
+                <td>
+                  <span th:text="${item.productionArea}">demmy</span>
+                </td>
+                <td>
+                  <span th:text="${item.price}">demmy</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- ここから下を編集する必要はありません -->
+        </div>
+      </div>
+    </div>
+    <!-- end container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script
+      src="../../static/js/bootstrap.min.js"
+      th:src="@{/js/bootstrap.min.js}"
+    ></script>
+  </body>
+</html>
