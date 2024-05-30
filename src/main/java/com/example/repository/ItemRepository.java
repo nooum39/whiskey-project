@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Itemsテーブルを操作するリポジトリです.
  *
- * @author haruka.yamaneki
+ * @author haruka.yamaneki 
  */
 
 @Repository
