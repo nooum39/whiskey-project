@@ -20,9 +20,8 @@ import jakarta.servlet.http.HttpSession;
 
 /**
  * 管理者情報を操作するコントローラー.
- * 
- * @author igamasayuki
  *
+ * @author igamasayuki
  */
 @Controller
 @RequestMapping("/")
@@ -78,15 +77,22 @@ public class AdministratorController {
 	@PostMapping("/insert")
 	public String insert(@Validated InsertAdministratorForm form, BindingResult result) {
 
-		if(result.hasErrors()){
+		if (administratorService.findByMailAddress(form.getMailAddress()) != null) {
+			result.rejectValue("mailAddress", " ", "メールアドレスが既に使用されています。");
+		}
+
+		if (!form.getPassword().equals(form.getConfirmationPassword())) {
+			result.rejectValue("password", " ", "パスワードが一致しません。");
+		}
+
+		if (result.hasErrors()) {
 			return toInsert(form);
 		}
-		Administrator administrator = new Administrator();
-		// フォームからドメインにプロパティ値をコピー
-		BeanUtils.copyProperties(form, administrator);
-		administratorService.insert(administrator);
-		return toInsert(form);
+		session.setAttribute("administratorName", form.getName());
+
+		return "redirect:/";
 	}
+
 
 	/////////////////////////////////////////////////////
 	// ユースケース：ログインをする
@@ -114,6 +120,7 @@ public class AdministratorController {
 			redirectAttributes.addFlashAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
 			return "redirect:/";
 		}
+		session.setAttribute("administratorName",administrator.getName());
 		return "redirect:/employee/showList";
 	}
 
@@ -132,3 +139,4 @@ public class AdministratorController {
 	}
 
 }
+

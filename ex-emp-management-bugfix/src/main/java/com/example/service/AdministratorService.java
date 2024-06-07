@@ -6,10 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Administrator;
 import com.example.repository.AdministratorRepository;
+import org.springframework.validation.BindingResult;
 
 /**
  * 管理者情報を操作するサービス.
- * 
+ *
  * @author igamasayuki
  *
  */
@@ -22,21 +23,18 @@ public class AdministratorService {
 
 	/**
 	 * 管理者情報を登録します.
-	 * 
+	 *
 	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
 
-		if (administratorRepository.findByMailAddress(administrator.getMailAddress()) == null){
+			administratorRepository.insert(administrator);
 
-		}
-
-		administratorRepository.insert(administrator);
 	}
 
 	/**
 	 * ログインをします.
-	 * 
+	 *
 	 * @param mailAddress メールアドレス
 	 * @param password    パスワード
 	 * @return 管理者情報 存在しない場合はnullが返ります
@@ -46,12 +44,15 @@ public class AdministratorService {
 		return administrator;
 	}
 
-
-
-
-
-
-
-
+	/**
+	 * メールアドレスを取得します.
+	 *
+	 * @param mailAddress
+	 * @return メールアドレス
+	 */
+	public Administrator findByMailAddress(String mailAddress) {
+		return administratorRepository.findByMailAddress(mailAddress);
+	}
 
 }
+
