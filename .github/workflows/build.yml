@@ -1,10 +1,7 @@
-name: Build WAR with Gradle
+name: Manual WAR Build
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:  # ← 手動実行を可能にする
 
 jobs:
   build:
@@ -26,7 +23,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Upload WAR file as artifact
+      - name: Upload WAR file
         uses: actions/upload-artifact@v3
         with:
           name: war-artifact
